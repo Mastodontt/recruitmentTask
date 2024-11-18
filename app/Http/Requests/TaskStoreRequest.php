@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Exercise;
+namespace App\Http\Requests;
 
 final class TaskStoreRequest extends TaskBaseRequest
 {

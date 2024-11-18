@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests\Invoice;
+namespace App\Http\Requests;
 
 use App\Enums\TaskPriority;
 use App\Enums\TaskStatus;
-use App\Http\Filters\FilteredRequest;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\Rule;
