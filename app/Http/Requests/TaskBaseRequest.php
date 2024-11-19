@@ -18,11 +18,11 @@ class TaskBaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['string', 'required'],
-            'description' => 'nullable',
+            'name' => ['string', 'required', 'max:255'],
+            'description' => ['nullable', 'max:10000'],
             'priority' => ['required', Rule::enum(TaskPriority::class)],
             'status' => ['required', Rule::enum(TaskStatus::class)],
-            'due_date' => ['required', 'date'],
+            'due_date' => ['required', 'date', 'after_or_equal:today'],
         ];
     }
 

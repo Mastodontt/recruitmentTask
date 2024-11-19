@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskPriority;
+use App\Enums\TaskStatus;
 use App\Http\Requests\TaskCreateRequest;
 use App\Http\Requests\TaskDestroyRequest;
 use App\Http\Requests\TaskEditRequest;
@@ -24,7 +26,10 @@ class TaskController extends Controller
 
     public function create(TaskCreateRequest $request): View
     {
-        return view('tasks.create');
+        return view('tasks.create', [
+            'statuses' => TaskStatus::options(),
+            'priorities' => TaskPriority::options(),
+        ]);
     }
 
     public function store(TaskStoreRequest $request): RedirectResponse
@@ -49,7 +54,11 @@ class TaskController extends Controller
 
     public function edit(TaskEditRequest $request, Task $task): View
     {
-        return view('tasks.edit', compact('task'));
+        return view('tasks.edit', [
+            'task' => $task,
+            'statuses' => TaskStatus::options(),
+            'priorities' => TaskPriority::options(),
+        ]);
     }
 
     public function update(TaskUpdateRequest $request, Task $task): RedirectResponse
