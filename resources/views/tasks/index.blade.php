@@ -3,6 +3,50 @@
 @section('content')
 <div class="container">
     <div class="container-fluid mt-5 custom-container">
+        <form method="GET" action="{{ route('tasks.index') }}" class="mb-4">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="priority" class="form-label">{{ __('tasks.priority') }}</label>
+                    <select name="priority" id="priority" class="form-control">
+                        <option value="">{{ __('global.select') }}</option>
+                        @foreach(\App\Enums\TaskPriority::options() as $key => $value)
+                            <option value="{{ $key }}" {{ request('priority') == $key ? 'selected' : '' }}>
+                                {{ $value }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="col-md-3">
+                    <label for="status" class="form-label">{{ __('tasks.status') }}</label>
+                    <select name="status" id="status" class="form-control">
+                        <option value="">{{ __('global.select') }}</option>
+                        @foreach(\App\Enums\TaskStatus::options() as $key => $value)
+                            <option value="{{ $key }}" {{ request('status') == $key ? 'selected' : '' }}>
+                                {{ $value }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="due_date_from" class="form-label">{{ __('tasks.due_date_from') }}</label>
+                    <input type="date" name="due_date[from]" id="due_date_from" class="form-control"
+                           value="{{ request()->input('due_date.from') }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="due_date_to" class="form-label">{{ __('tasks.due_date_to') }}</label>
+                    <input type="date" name="due_date[to]" id="due_date_to" class="form-control"
+                           value="{{ request()->input('due_date.to') }}">
+                </div>
+            </div>
+
+            <div class="mt-3 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary">{{ __('global.filter') }}</button>
+                <a href="{{ route('tasks.index') }}" class="btn btn-secondary ml-2">{{ __('global.clear_filters') }}</a>
+            </div>
+        </form>
         @include('inc.alerts')
         <a href="{{ route('tasks.create') }}">
             <button class="btn btn-primary mb-3">{{ __('tasks.add') }}</button>

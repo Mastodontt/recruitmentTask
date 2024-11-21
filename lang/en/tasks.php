@@ -19,9 +19,11 @@ return [
         'medium' => 'Medium',
         'high' => 'High',
     ],
-    'tasks' => [
+    'statuses' => [
         'todo' => 'To do',
         'in_progress' => 'In progress',
         'done' => 'Done',
     ],
+    'due_date_from' => 'Due date from',
+    'due_date_to' => 'Due date to',
 ];
