@@ -43,7 +43,7 @@ class TaskIndexRequest extends FilteredRequest
 
     private function status(Builder $query): void
     {
-        if (!($status = $this->input('status'))) {
+        if (! ($status = $this->input('status'))) {
             return;
         }
 
@@ -52,7 +52,7 @@ class TaskIndexRequest extends FilteredRequest
 
     private function priority(Builder $query): void
     {
-        if (!($priority = $this->input('priority'))) {
+        if (! ($priority = $this->input('priority'))) {
             return;
         }
 

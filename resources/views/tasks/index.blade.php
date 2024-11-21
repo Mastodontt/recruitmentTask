@@ -68,6 +68,24 @@
                                 <button class="btn btn-danger ml-3">{{ __('global.delete') }}</button>
                             </form>
                         </div>
+
+                        @if(!$task->publicAccessToken || !$task->publicAccessToken->expires_at->isFuture())
+                        <form action="{{ route('tasks.generate-link', $task->id) }}" method="POST" class="ml-2">
+                            @csrf
+                            <button type="submit" class="btn btn-info">{{ __('Generate Link') }}</button>
+                        </form>
+                        @endif
+
+                        @if($task->publicAccessToken && $task->publicAccessToken->expires_at->isFuture())
+                        <form action="{{ route('tasks.revoke-link', $task->id) }}" method="POST" class="ml-2">
+                            <input type="text" 
+                            value="{{ route('tasks.public.show', ['token' => $task->publicAccessToken->token]) }}" 
+                            class="form-control"
+                            readonly>
+                            @csrf
+                            <button type="submit" class="btn btn-warning">{{ __('Revoke Link') }}</button>
+                        </form>
+                        @endif
                         @endcan
                     </div>
                 </div>
