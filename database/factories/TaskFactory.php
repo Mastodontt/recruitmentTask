@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\TaskPriority;
 use App\Enums\TaskStatus;
 use App\Models\Task;
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -55,6 +56,13 @@ class TaskFactory extends Factory
     {
         return $this->state([
             'due_date' => $dueDate,
+        ]);
+    }
+
+    public function withCreatedBy(User $user): static
+    {
+        return $this->state([
+            'created_by' => $user->id,
         ]);
     }
 }

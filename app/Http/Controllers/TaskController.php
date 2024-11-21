@@ -40,7 +40,8 @@ class TaskController extends Controller
                 $request->getDescription(),
                 $request->getPriority(),
                 $request->getStatus(),
-                $request->getDueDate()
+                $request->getDueDate(),
+                $request->user()
             );
             $task->saveOrFail();
         } catch (\Throwable $exception) {
@@ -69,6 +70,7 @@ class TaskController extends Controller
             $task->setPriority($request->getPriority());
             $task->setTaskStatus($request->getStatus());
             $task->setDueDate($request->getDueDate());
+            $task->setUpdatedBy($request->user());
             $task->saveOrFail();
         } catch (\Throwable $exception) {
             Log::error('Failure to update task: '.$exception->getMessage());

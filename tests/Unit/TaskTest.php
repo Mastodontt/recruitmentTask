@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Enums\TaskPriority;
 use App\Enums\TaskStatus;
 use App\Models\Task;
+use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -19,6 +20,7 @@ class TaskTest extends TestCase
         $description = 'This is a test task.';
         $priority = TaskPriority::Low;
         $status = TaskStatus::InProgress;
+        $user = User::factory()->create();
         $dueDate = CarbonImmutable::now()->addDays(5);
 
         $task = Task::createIt(
@@ -26,8 +28,10 @@ class TaskTest extends TestCase
             $description,
             $priority,
             $status,
-            $dueDate
+            $dueDate,
+            $user
         );
+
         $task->save();
 
         $this->assertDatabaseHas('tasks', [
