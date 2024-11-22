@@ -7,7 +7,7 @@ use App\DataTransferObjects\CalendarTaskDto;
 use App\Models\Task;
 use Illuminate\Http\RedirectResponse;
 
-class SyncTaskWithCalendarController extends Controller
+final class SyncTaskWithCalendarController extends Controller
 {
     public function __construct(private CalendarServiceContract $calendarService) {}
 

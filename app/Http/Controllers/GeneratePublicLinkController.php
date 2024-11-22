@@ -7,7 +7,7 @@ use App\Models\Task;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 
-class GeneratePublicLinkController
+final class GeneratePublicLinkController
 {
     use AuthorizesRequests;
 

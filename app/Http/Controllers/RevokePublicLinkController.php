@@ -6,7 +6,7 @@ use App\Models\Task;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\RedirectResponse;
 
-class RevokePublicLinkController
+final class RevokePublicLinkController
 {
     use AuthorizesRequests;
 
@@ -14,7 +14,7 @@ class RevokePublicLinkController
     {
         $this->authorize('update', $task);
 
-        $task->publicAccessToken?->revoke();
+        $task?->publicAccessToken?->revoke();
 
         return redirect()->route('tasks.index')->with('success', 'Public link revoked.');
     }

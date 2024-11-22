@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TaskDestroyRequest extends FormRequest
+final class TaskDestroyRequest extends FormRequest
 {
     public function authorize(): bool
     {

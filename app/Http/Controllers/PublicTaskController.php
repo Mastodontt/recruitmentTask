@@ -6,7 +6,7 @@ use App\Models\PublicAccessToken;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class PublicTaskController extends Controller
+final class PublicTaskController extends Controller
 {
     public function show(Request $request, string $token): View
     {

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class TaskIndexRequest extends FilteredRequest
+final class TaskIndexRequest extends FilteredRequest
 {
     protected function requestRules(): array
     {
