@@ -58,6 +58,13 @@
                     <h6 class="mb-0">{{ $task->name }}</h6>
                     <div class="d-flex align-items-center">
                         @can('update', $task)
+                        @if($task->syncAble())
+                            <form action="{{ route('tasks.sync-calendar', $task) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Sync with Google Calendar</button>
+                            </form>
+                        @endif
+                        
                         <div class="buttons d-flex">
                             <a href="{{ route('tasks.edit', $task->id) }}">
                                 <button class="btn btn-secondary">{{ __('global.edit') }}</button>

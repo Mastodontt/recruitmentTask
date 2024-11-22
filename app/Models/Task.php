@@ -21,6 +21,7 @@ class Task extends Model
         'status',
         'due_date',
         'notification_sent_at',
+        'calendar_event_id',
         'created_by',
         'updated_by',
     ];
@@ -53,6 +54,11 @@ class Task extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function syncAble(): bool
+    {
+        return $this->calendar_event_id === null && ! $this->due_date->isPast();
     }
 
     public function publicAccessToken(): HasOne
@@ -117,5 +123,14 @@ class Task extends Model
         }
 
         $this->updated_by = $user->id;
+    }
+
+    public function setCalendarEventId(string $calendarEventId): void
+    {
+        if ($this->calendar_event_id === $calendarEventId) {
+            return;
+        }
+
+        $this->calendar_event_id = $calendarEventId;
     }
 }

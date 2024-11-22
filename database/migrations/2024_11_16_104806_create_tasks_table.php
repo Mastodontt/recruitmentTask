@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('priority');
             $table->string('status');
             $table->dateTime('due_date');
+            $table->string('calendar_event_id')->nullable();
             $table->dateTime('notification_sent_at')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');

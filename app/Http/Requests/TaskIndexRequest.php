@@ -38,7 +38,7 @@ class TaskIndexRequest extends FilteredRequest
 
     public function getBaseQuery(): Builder
     {
-        return Task::query()->where('created_by', Auth::user()->id);
+        return Task::query()->with('publicAccessToken')->where('created_by', Auth::user()->id);
     }
 
     private function status(Builder $query): void

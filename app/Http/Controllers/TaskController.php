@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CalendarServiceContract;
 use App\Enums\TaskPriority;
 use App\Enums\TaskStatus;
 use App\Http\Requests\TaskCreateRequest;
@@ -17,6 +18,8 @@ use Illuminate\View\View;
 
 class TaskController extends Controller
 {
+    public function __construct(CalendarServiceContract $calendarService) {}
+
     public function index(TaskIndexRequest $request): View
     {
         $tasks = $request->filter()->paginate(10);
@@ -77,8 +80,6 @@ class TaskController extends Controller
 
             return redirect()->back()->with('error', 'An error occured while updating task.');
         }
-
-        $task->update($request->validated());
 
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
