@@ -53,8 +53,8 @@ npm install
 ### **6. Run migrations**
 ./vendor/bin/sail artisan migrate
 
-### **7. Run npm dev**
-./vendor/bin/sail npm dev
+### **7. Run npm run dev**
+./vendor/bin/sail npm run dev
 
 ### **8. Access the Application**
 http://localhost
